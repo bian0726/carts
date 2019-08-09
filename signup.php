@@ -1,4 +1,3 @@
-<?php include("head.php") ?>
 <?php
 session_start();
 if (isset($_SESSION['login']) && $_SESSION['login'] != "") { //已經登入 則重新導向
@@ -13,7 +12,7 @@ if ($_POST['action'] == "join") {
     } else {
         //若沒有重複 則執行新增的動作
         //$pwd = $_POST['Password'];
-        $pwd = password_hash($_POST['Password'],PASSWORD_DEFAULT);
+        $pwd = password_hash($_POST['Password'], PASSWORD_DEFAULT);
         $id = $_POST['id'];
         $name = $_POST['Name'];
         $birth = $_POST['Birth'];
@@ -22,7 +21,7 @@ if ($_POST['action'] == "join") {
         $insert_query = "INSERT INTO member (m_ID, m_Name, m_Password, m_Birth, m_Address, m_Phone) VALUES ('$id','$name','$pwd','$birth','$address','$phone')";
         $mysqli->query($insert_query);
         $mysqli->close();
-        header("Location: signup.php?stats=1");//註冊成功
+        header("Location: signup.php?stats=1"); //註冊成功
     }
 }
 ?>
@@ -38,6 +37,7 @@ if ($_POST['action'] == "join") {
         window.location.href = 'signin.php';
     </script>
 <?php } ?>
+<?php include("head.php") ?>
 <section id="fh5co-blog" data-section="blog">
     <div class="fh5co-blog">
         <div class="container">

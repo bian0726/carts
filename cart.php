@@ -72,7 +72,7 @@ if (isset($_GET["action"]) && ($_GET["action"] == "empty")) {
                   </tbody>
                 </table>
                 <input class="btn" style="font-family:'Microsoft JhengHei'" type="button" value="繼續選購" onClick="window.location.href='product.php';">
-                <input class="btn" style="font-family:'Microsoft JhengHei'" type="button" value="結帳去" onClick="">
+                <input class="btn" style="font-family:'Microsoft JhengHei'" type="button" value="結帳去" onClick="alert('....等待後續設計');">
               </form>
             <?php } else { ?>
               <div class="row">

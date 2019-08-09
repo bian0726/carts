@@ -1,26 +1,29 @@
-<?php include("head.php") //引用頁首頁尾?>
 <?php
 session_start();
-if(isset($_SESSION["login"]) && $_SESSION['login']!= ""){
+if (isset($_SESSION["login"]) && $_SESSION['login'] != "") {
     header("Location: memberCenter.php");
 }
-if(isset($_POST['login']) && $_POST["login"] == "login"){
+if (isset($_POST['login']) && $_POST["login"] == "login") {
     require_once('conn.php');
     $login_query = "SELECT * FROM member WHERE m_ID = '{$_POST['id']}'";
     $result = $mysqli->query($login_query);
     $row = $result->fetch_assoc();
     $pwd = $row["m_Password"];
-    $userPwd=$_POST['password'];
+    $userPwd = $_POST['password'];
     if (password_verify($userPwd, $pwd)) {
-        $_SESSION['login']="ok";
+        $_SESSION['login'] = "ok";
+        $_SESSION['names'] = $row['m_Name'];
+        $_SESSION['level'] = $row['m_Level'];
+        $_SESSION['uid'] = $row['m_UID'];
         echo "login ok";
         header("Location: memberCenter.php");
-    }else {
+    } else {
         header('location:index.php');
     }
     $result->close();
 }
 ?>
+<?php include("head.php") //引用頁首頁尾?>
 <section id="fh5co-blog" data-section="blog">
     <div class="fh5co-blog">
         <div class="container">
@@ -37,12 +40,10 @@ if(isset($_POST['login']) && $_POST["login"] == "login"){
                                 </div>
                                 <div class="form-group">
                                     <label for="name" class="sr-only">password</label>
-                                    <input type="password" class="form-control" 
-                                    id="password" name="password"
-                                    placeholder="Password">
+                                    <input type="password" class="form-control" id="password" name="password" placeholder="Password">
                                 </div>
                                 <div class="form-group">
-                                    <input type="submit" class="btn btn-send-message btn-md" value="Login"><br/>
+                                    <input type="submit" class="btn btn-send-message btn-md" value="Login"><br />
                                     <a href="signup.php">I don't have an account</a>
                                     <input type="hidden" id="login" name="login" value="login">
                                 </div>
