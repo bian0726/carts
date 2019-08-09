@@ -69,7 +69,7 @@ if ($_POST['action'] == "join") {
                                 </div>
                                 <div class="form-group">
                                     <label for="name" class="sr-only">Password</label>
-                                    <input type="text" name="Password" id="Password" class="form-control" placeholder="Password" required="">
+                                    <input type="password" name="Password" id="Password" class="form-control" placeholder="Password" required="">
                                 </div>
                                 <div class="form-group">
                                     <input type="submit" id="btn-submit" class="btn btn-send-message btn-md" value="Sing up"></br>

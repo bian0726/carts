@@ -18,12 +18,20 @@ if (isset($_POST['login']) && $_POST["login"] == "login") {
         echo "login ok";
         header("Location: memberCenter.php");
     } else {
-        header('location:index.php');
+        header('Location: signin.php?error=1');
+        //header('location:index.php');
     }
     $result->close();
 }
 ?>
-<?php include("head.php") //引用頁首頁尾?>
+<?php if (isset($_GET["error"]) && ($_GET["error"] == "1")) { ?>
+    <script language="javascript">
+        alert('帳號或密碼錯誤');
+        //window.location.href = 'signin.php';
+    </script>
+<?php } ?>
+<?php include("head.php") //引用頁首頁尾
+?>
 <section id="fh5co-blog" data-section="blog">
     <div class="fh5co-blog">
         <div class="container">
@@ -36,7 +44,7 @@ if (isset($_POST['login']) && $_POST["login"] == "login") {
                             <form method="post" id="login" class="contact-form">
                                 <div class="form-group">
                                     <label for="name" class="sr-only">ID</label>
-                                    <input type="text" class="form-control" id="id" name="id" placeholder="ID" required="">
+                                    <input type="text" class="form-control" id="id" name="id" placeholder="ID" required="" pattern="[a-zA-Z0-9]*">
                                 </div>
                                 <div class="form-group">
                                     <label for="name" class="sr-only">password</label>
